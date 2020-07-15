@@ -1,4 +1,5 @@
 defmodule TwinklyMahaWeb.PageLive do
+  @moduledoc false
   use TwinklyMahaWeb, :live_view
 
   @impl true

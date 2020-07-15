@@ -1,4 +1,6 @@
 defmodule TwinklyMahaWeb.Telemetry do
+  @moduledoc "Application telemetry"
+
   use Supervisor
   import Telemetry.Metrics
 

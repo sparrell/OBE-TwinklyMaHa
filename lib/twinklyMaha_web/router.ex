@@ -18,6 +18,7 @@ defmodule TwinklyMahaWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    live "/phoenix", PageLive, :index
   end
 
   # Other scopes may use custom stacks.

@@ -11,10 +11,15 @@ defmodule TwinklyMahaWeb.TwinklyLive do
   def render(assigns) do
     ~L"""
     <div class="row">
-      <div class="column">
-        <div class="led-box">
-        <div class="led-<%= if @led_on?, do: "green", else: "off" %>"></div>
-        </div>
+      <div class="columns">
+        <%= for n <- 1..8 do %>
+          <%= for m <- 1..8 do %>
+            <div class="led-box">
+              <div class="led-<%= if @led_on?, do: "green", else: "off" %>"></div>
+            </div>
+          <% end %>
+            <br/ >
+        <% end %>
         <div>
           <a class="button" phx-click="toggle-led">Turn LED <%= if @led_on?, do: "OFF", else: "ON" %> </a>
         </div>

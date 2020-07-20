@@ -15,7 +15,7 @@ defmodule TwinklyMahaWeb.TwinklyLive do
         <%= for n <- 1..8 do %>
           <%= for m <- 1..8 do %>
             <div class="led-box">
-              <div class="led-<%= if @led_on?, do: "green", else: "off" %>"></div>
+            <div class="led led-<%= if @led_on?, do: "on", else: "off" %>" data-ledcolor="purple" phx-hook="LedColor"></div>
             </div>
           <% end %>
             <br/ >

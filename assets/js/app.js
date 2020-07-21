@@ -19,7 +19,7 @@ import { LiveSocket } from "phoenix_live_view";
 
 let Hooks = {};
 Hooks.LedColor = {
-  mounted() {
+  updated() {
     var leds = document.querySelectorAll(".led");
     for (let led of leds) {
       let color = led.dataset.ledcolor ? led.dataset.ledcolor : "green";

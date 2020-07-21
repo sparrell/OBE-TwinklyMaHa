@@ -5,21 +5,22 @@ defmodule TwinklyMahaWeb.TwinklyLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, led_on?: false)}
+    {:ok, assign(socket, led_on?: false, current_color: "green")}
   end
 
   def render(assigns) do
     ~L"""
     <div class="row">
       <div class="columns">
-        <%= for n <- 1..8 do %>
-          <%= for m <- 1..8 do %>
+        <%= for _row <- 1..8 do %>
+          <%= for _column <- 1..8 do %>
             <div class="led-box">
-            <div class="led led-<%= if @led_on?, do: "on", else: "off" %>" data-ledcolor="purple" phx-hook="LedColor"></div>
+            <div class="led led-<%= if @led_on?, do: "on", else: "off" %>" data-ledcolor="<%= @current_color %>" phx-hook="LedColor"></div>
             </div>
           <% end %>
             <br/ >
         <% end %>
+        <%= if @led_on?, do: select_color(assigns) %>
         <div>
           <a class="button" phx-click="toggle-led">Turn LED <%= if @led_on?, do: "OFF", else: "ON" %> </a>
         </div>
@@ -28,9 +29,28 @@ defmodule TwinklyMahaWeb.TwinklyLive do
     """
   end
 
+  defp select_color(assigns) do
+    ~L"""
+      <select id="select-colors" name="colors">
+      <%= for color <- ["green", "red", "purple"] do %>
+          <option value="<%= color %>"
+                  phx-click="change-color"
+                  phx-value-color=<%= color %>
+                  <%= if @current_color == color, do: "selected" %>
+                > <%= color %>
+          </option>
+        <% end %>
+    </select>
+    """
+  end
+
   @impl true
   def handle_event("toggle-led", _, socket) do
     {:noreply, toggle_led(socket)}
+  end
+
+  def handle_event("change-color", %{"color" => color}, socket) do
+    {:noreply, assign(socket, :current_color, color)}
   end
 
   defp toggle_led(socket) do

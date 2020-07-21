@@ -3,10 +3,11 @@ defmodule TwinklyMahaWeb.TwinklyLive do
 
   use TwinklyMahaWeb, :live_view
 
+  @colors ["Violet", "Indigo", "Blue", "Green", "Yellow", "Orange", "Red"]
+
   @impl true
   def mount(_params, _session, socket) do
-    colors = ["Violet", "Indigo", "Blue", "Green", "Yellow", "Orange", "Red"]
-    {:ok, assign(socket, led_on?: false, current_color: hd(colors), colors: colors)}
+    {:ok, assign(socket, led_on?: false, current_color: hd(@colors), colors: @colors)}
   end
 
   def render(assigns) do
@@ -44,25 +45,21 @@ defmodule TwinklyMahaWeb.TwinklyLive do
 
   defp select_color(assigns) do
     # this is assigned here to stop it from updating the select list when colors is shifted to the right
-    colors = assigns.colors
+    colors = @colors
 
     ~L"""
-      <select id="select-colors" name="colors">
+    <form phx-change="change-color">
+      <select id="select-colors" name="color">
       <%= for color <- colors do %>
-          <option value="<%= color %>"
-                  phx-click="change-color"
-                  phx-value-color=<%= color %>
-                  <%= if @current_color == color, do: "selected" %>
-                > <%= color %>
+          <option value="<%= color %>" <%= if @current_color == color, do: "selected" %> >
+            <%= color %>
           </option>
         <% end %>
-      <option value="rainbow"
-        phx-click="change-color"
-        phx-value-color="rainbow"
-        <%= if @current_color == "rainbow", do: "selected" %>
-      > Rainbow
+      <option value="rainbow" <%= if @current_color == "rainbow", do: "selected" %> >
+        Rainbow
       </option>
     </select>
+    </form>
     """
   end
 

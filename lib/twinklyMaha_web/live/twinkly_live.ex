@@ -43,9 +43,12 @@ defmodule TwinklyMahaWeb.TwinklyLive do
   end
 
   defp select_color(assigns) do
+    # this is assigned here to stop it from updating the select list when colors is shifted to the right
+    colors = assigns.colors
+
     ~L"""
       <select id="select-colors" name="colors">
-      <%= for color <- @colors do %>
+      <%= for color <- colors do %>
           <option value="<%= color %>"
                   phx-click="change-color"
                   phx-value-color=<%= color %>
@@ -73,6 +76,21 @@ defmodule TwinklyMahaWeb.TwinklyLive do
   @impl true
   def handle_event("change-color", %{"color" => color}, socket) do
     {:noreply, current_color(socket, color, socket.assigns.led_on?)}
+  end
+
+  def handle_info(:shift_color, socket) do
+    Process.send_after(self(), :shift_color, 100)
+    {:noreply, shift_colors(socket)}
+  end
+
+  defp shift_colors(socket) do
+    [hd | tail] = socket.assigns.colors
+    assign(socket, :colors, tail ++ [hd])
+  end
+
+  defp current_color(socket, "rainbow", true) do
+    Process.send_after(self(), :shift_color, 100)
+    assign(socket, :current_color, "rainbow")
   end
 
   defp current_color(socket, _color, false = led_on?) do

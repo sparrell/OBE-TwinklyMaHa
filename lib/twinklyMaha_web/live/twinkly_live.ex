@@ -5,17 +5,18 @@ defmodule TwinklyMahaWeb.TwinklyLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, led_on?: false, current_color: "green")}
+    colors = ["Violet", "Indigo", "Blue", "Green", "Yellow", "Orange", "Red"]
+    {:ok, assign(socket, led_on?: false, current_color: hd(colors), colors: colors)}
   end
 
   def render(assigns) do
     ~L"""
     <div class="row">
       <div class="columns">
-        <%= for _row <- 1..8 do %>
-          <%= for _column <- 1..8 do %>
+        <%= for row <- 0..7 do %>
+          <%= for _column <- 0..7 do %>
             <div class="led-box">
-            <div class="led led-<%= if @led_on?, do: "on", else: "off" %>" data-ledcolor="<%= @current_color %>" phx-hook="LedColor"></div>
+            <div class="led led-<%= if @led_on?, do: "on", else: "off" %>" <%= assign_color(assigns, @current_color, row) %> phx-hook="LedColor"></div>
             </div>
           <% end %>
             <br/ >
@@ -29,10 +30,22 @@ defmodule TwinklyMahaWeb.TwinklyLive do
     """
   end
 
+  defp assign_color(assigns, "rainbow", row) do
+    ~L"""
+    data-ledcolor="<%= Stream.cycle(@colors) |> Enum.at(row) %>"
+    """
+  end
+
+  defp assign_color(assigns, color, row) do
+    ~L"""
+    data-ledcolor="<%= color %>"
+    """
+  end
+
   defp select_color(assigns) do
     ~L"""
       <select id="select-colors" name="colors">
-      <%= for color <- ["green", "red", "purple"] do %>
+      <%= for color <- @colors do %>
           <option value="<%= color %>"
                   phx-click="change-color"
                   phx-value-color=<%= color %>
@@ -40,6 +53,12 @@ defmodule TwinklyMahaWeb.TwinklyLive do
                 > <%= color %>
           </option>
         <% end %>
+      <option value="rainbow"
+        phx-click="change-color"
+        phx-value-color="rainbow"
+        <%= if @current_color == "rainbow", do: "selected" %>
+      > Rainbow
+      </option>
     </select>
     """
   end
@@ -47,7 +66,8 @@ defmodule TwinklyMahaWeb.TwinklyLive do
   @impl true
   def handle_event("toggle-led", _, socket) do
     socket = toggle_led(socket)
-    {:noreply, socket |> current_color("green", socket.assigns.led_on?)}
+    color = hd(socket.assigns.colors)
+    {:noreply, socket |> current_color(color, socket.assigns.led_on?)}
   end
 
   @impl true

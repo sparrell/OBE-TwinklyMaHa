@@ -49,6 +49,7 @@ defmodule TwinklyMahaWeb.TwinklyLive do
     {:noreply, toggle_led(socket)}
   end
 
+  @impl true
   def handle_event("change-color", %{"color" => color}, socket) do
     {:noreply, assign(socket, :current_color, color)}
   end

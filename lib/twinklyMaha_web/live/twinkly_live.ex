@@ -14,7 +14,7 @@ defmodule TwinklyMahaWeb.TwinklyLive do
   def render(assigns) do
     ~L"""
     <div class="row">
-      <div class="columns">
+    <div class="column column-50 column-offset-25">
         <%= for row <- 0..7 do %>
           <%= for _column <- 0..7 do %>
             <div class="led-box">

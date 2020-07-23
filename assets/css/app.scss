@@ -3,6 +3,23 @@
 @import "../node_modules/nprogress/nprogress.css";
 @import "./_twinkly_led.scss";
 
+.logo {
+  img {
+    height: 100px;
+    max-width: 300px;
+  }
+  li {
+    font-size: 10em;
+  }
+}
+nav {
+  ul {
+    li {
+      font-size: 3em;
+      color: #666;
+    }
+  }
+}
 /* LiveView specific classes for your customizations */
 .invalid-feedback {
   color: #a94442;

@@ -10,6 +10,7 @@ defmodule TwinklyMahaWeb.TwinklyLive do
     {:ok, assign(socket, led_on?: false, current_color: hd(@colors), colors: @colors)}
   end
 
+  @impl true
   def render(assigns) do
     ~L"""
     <div class="row">
@@ -37,7 +38,7 @@ defmodule TwinklyMahaWeb.TwinklyLive do
     """
   end
 
-  defp assign_color(assigns, color, row) do
+  defp assign_color(assigns, color, _row) do
     ~L"""
     data-ledcolor="<%= color %>"
     """
@@ -75,6 +76,7 @@ defmodule TwinklyMahaWeb.TwinklyLive do
     {:noreply, current_color(socket, color, socket.assigns.led_on?)}
   end
 
+  @impl true
   def handle_info(:shift_color, socket) do
     Process.send_after(self(), :shift_color, 100)
     {:noreply, shift_colors(socket)}
@@ -90,11 +92,11 @@ defmodule TwinklyMahaWeb.TwinklyLive do
     assign(socket, :current_color, "rainbow")
   end
 
-  defp current_color(socket, _color, false = led_on?) do
+  defp current_color(socket, _color, false = _led_on?) do
     assign(socket, :current_color, "rgba(0, 0, 0, 0.2)")
   end
 
-  defp current_color(socket, color, true = led_on?) do
+  defp current_color(socket, color, true = _led_on?) do
     assign(socket, :current_color, color)
   end
 

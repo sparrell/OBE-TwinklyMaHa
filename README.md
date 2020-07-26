@@ -1,5 +1,12 @@
 # TwinklyMaHa
-Digital Twin of BlinkyMaHa (ie in cloud instead of on Raspberry Pi, LiveView graphics instead of LEDs)
+Twinkly is the
+digital twin of blinky (ie in cloud instead of on Raspberry Pi, LiveView graphics instead of LEDs).
+
+Blinky looks like:
+[![blinky](./docs/blinky.jpeg)](https://www.youtube.com/watch?v=RcnRFfFtKQY)
+
+Twinkly looks like:
+![twinklygif](https://user-images.githubusercontent.com/584211/88267055-ed08ca80-ccd8-11ea-89ab-6760e772eb10.gif)
 
 ## Setup guide
 First ensure you have the following set up in your computer

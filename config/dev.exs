@@ -1,7 +1,7 @@
 use Mix.Config
 
 # Configure your database
-config :twinklyMaha, TwinklyMaha.Repo,
+config :twinkly_maha, TwinklyMaha.Repo,
   username: "postgres",
   password: "postgres",
   database: "twinklymaha_dev",
@@ -15,7 +15,7 @@ config :twinklyMaha, TwinklyMaha.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :twinklyMaha, TwinklyMahaWeb.Endpoint,
+config :twinkly_maha, TwinklyMahaWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -30,6 +30,7 @@ config :twinklyMaha, TwinklyMahaWeb.Endpoint,
     ]
   ]
 
+config :twinkly_maha, TwinklyMahaWeb.Endpoint, server: true
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
@@ -55,7 +56,7 @@ config :twinklyMaha, TwinklyMahaWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :twinklyMaha, TwinklyMahaWeb.Endpoint,
+config :twinkly_maha, TwinklyMahaWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",

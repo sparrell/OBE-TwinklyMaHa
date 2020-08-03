@@ -11,9 +11,9 @@ on:
       - develop
 
 jobs:
-  build:
+  lint:
 
-    name: Build and test
+    name: Run test and check code styles
     runs-on: ubuntu-latest
 
     services:

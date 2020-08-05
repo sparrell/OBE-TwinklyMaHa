@@ -1,5 +1,7 @@
 deploy_to_production:
   image: elixir:1.10.3
+  only:
+    - main
 
   stage: deploy
   before_script:

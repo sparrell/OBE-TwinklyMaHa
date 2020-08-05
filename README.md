@@ -41,3 +41,9 @@ lint-format            Check if the project is well formated using elixir format
 lint                   Check if the project follows set conventions such as formatting
 test                   Run the test suite
 ```
+
+## Deployment to GCP
+We are using gitlab to deploy to GCP by creating a tarball, connecting to the instance and copying the tarball into the server, extracting it and running it. This is automatically done when merged into the main branch.
+
+### Challenges
+Currently experiencing auto deploy challenge as outlined in [this issue]( https://github.com/sparrell/TwinklyMaHa/issues/19 )

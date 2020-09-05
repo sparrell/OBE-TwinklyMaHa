@@ -6,7 +6,7 @@ defmodule DoSet do
 
   require Logger
 
-  @colors ["Violet", "Indigo", "Blue", "Green", "Yellow", "Orange", "Red"]
+  @colors ["violet", "indigo", "blue", "green", "yellow", "orange", "red"]
 
   @topic "leds"
 
@@ -36,12 +36,16 @@ defmodule DoSet do
   end
 
   defp set_color("rainbow", command) do
-    Phoenix.PubSub.broadcast(Twinklymaha.PubSub, @topic, "rainbow")
+    Phoenix.PubSub.broadcast(TwinklyMaha.PubSub, @topic, "rainbow")
+    %Command{command | response: %{status: 200}}
+  end
+  defp set_color("off", command) do
+    Phoenix.PubSub.broadcast(TwinklyMaha.PubSub, @topic, "off")
     %Command{command | response: %{status: 200}}
   end
   defp set_color(color, command) do
     if color in @colors do
-      Phoenix.PubSub.broadcast(Twinklymaha.PubSub, @topic, color)
+      Phoenix.PubSub.broadcast(TwinklyMaha.PubSub, @topic, color)
       %Command{command | response: %{status: 200}}
     else
       Command.return_error("invalid color")

@@ -34,6 +34,7 @@ defmodule DoSetTest do
                       target_specifier: "rainbow"
                      }
         |> DoSet.do_cmd
+    assert command.error_msg == nil
     assert command.error? == false
     assert command.response.status == 200
   end
@@ -45,6 +46,7 @@ defmodule DoSetTest do
                       target_specifier: "red"
                      }
         |> DoSet.do_cmd
+    assert command.error_msg == nil
     assert command.error? == false
     assert command.response.status == 200
   end
@@ -56,6 +58,7 @@ defmodule DoSetTest do
                       target_specifier: "off"
                      }
         |> DoSet.do_cmd
+    assert command.error_msg == nil
     assert command.error? == false
     assert command.response.status == 200
   end

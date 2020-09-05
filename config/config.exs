@@ -7,11 +7,11 @@
 # General application configuration
 use Mix.Config
 
-config :twinklyMaha,
+config :twinkly_maha,
   ecto_repos: [TwinklyMaha.Repo]
 
 # Configures the endpoint
-config :twinklyMaha, TwinklyMahaWeb.Endpoint,
+config :twinkly_maha, TwinklyMahaWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "Kvx4WCG57Wq4GMXuYWddoLL3N1aUrto576ET6szpLd1m6dqSmQ4VmquJTB7uIJ1W",
   render_errors: [view: TwinklyMahaWeb.ErrorView, accepts: ~w(html json), layout: false],

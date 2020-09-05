@@ -20,5 +20,5 @@ defmodule TwinklyMahaWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :twinklyMaha
+  use Gettext, otp_app: :twinkly_maha
 end

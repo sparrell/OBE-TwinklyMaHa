@@ -33,11 +33,11 @@ defmodule TwinklyMahaWeb.Telemetry do
       ),
 
       # Database Metrics
-      summary("twinklyMaha.repo.query.total_time", unit: {:native, :millisecond}),
-      summary("twinklyMaha.repo.query.decode_time", unit: {:native, :millisecond}),
-      summary("twinklyMaha.repo.query.query_time", unit: {:native, :millisecond}),
-      summary("twinklyMaha.repo.query.queue_time", unit: {:native, :millisecond}),
-      summary("twinklyMaha.repo.query.idle_time", unit: {:native, :millisecond}),
+      summary("twinkly_maha.repo.query.total_time", unit: {:native, :millisecond}),
+      summary("twinkly_maha.repo.query.decode_time", unit: {:native, :millisecond}),
+      summary("twinkly_maha.repo.query.query_time", unit: {:native, :millisecond}),
+      summary("twinkly_maha.repo.query.queue_time", unit: {:native, :millisecond}),
+      summary("twinkly_maha.repo.query.idle_time", unit: {:native, :millisecond}),
 
       # VM Metrics
       summary("vm.memory.total", unit: {:byte, :kilobyte}),

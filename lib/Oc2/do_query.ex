@@ -32,7 +32,7 @@ defmodule DoQuery do
     e1 = "Hello World incorrect specifier"
     e2 = inspect(command.target_specifier)
     error_msg = e1 <> " " <> e2
-    Logger.debug(e1)
+    Logger.debug(error_msg)
     Command.return_error(e1)
   end
   def do_cmd(%Command{action: "query",

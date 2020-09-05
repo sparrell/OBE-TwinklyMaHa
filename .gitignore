@@ -5,7 +5,7 @@
 /.fetch
 erl_crash.dump
 *.ez
-twinklyMaha-*.tar
+twinkly_maha-*.tar
 npm-debug.log
 /assets/node_modules/
 /priv/static/

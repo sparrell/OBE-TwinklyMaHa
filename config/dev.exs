@@ -1,7 +1,7 @@
 use Mix.Config
 
 # Configure your database
-config :twinklyMaha, TwinklyMaha.Repo,
+config :twinkly_maha, TwinklyMaha.Repo,
   username: "postgres",
   password: "postgres",
   database: "twinklymaha_dev",
@@ -15,7 +15,7 @@ config :twinklyMaha, TwinklyMaha.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :twinklyMaha, TwinklyMahaWeb.Endpoint,
+config :twinkly_maha, TwinklyMahaWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -31,7 +31,7 @@ config :twinklyMaha, TwinklyMahaWeb.Endpoint,
   ]
 
 ## set up openc2 on separate port as it's own endpoint
-config :twinklyMaha, TwinklyHaHaWeb.Endpoint,
+config :twinkly_maha, TwinklyHaHaWeb.Endpoint,
   http: [port: 8080],
   debug_errors: true,
   code_reloader: true,
@@ -62,13 +62,13 @@ config :twinklyMaha, TwinklyHaHaWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :twinklyMaha, TwinklyMahaWeb.Endpoint,
+config :twinkly_maha, TwinklyMahaWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/twinklyMaha_web/(live|views)/.*(ex)$",
-      ~r"lib/twinklyMaha_web/templates/.*(eex)$"
+      ~r"lib/twinkly_maha_web/(live|views)/.*(ex)$",
+      ~r"lib/twinkly_maha_web/templates/.*(eex)$"
     ]
   ]
 

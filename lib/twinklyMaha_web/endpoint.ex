@@ -1,12 +1,12 @@
 defmodule TwinklyMahaWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :twinklyMaha
+  use Phoenix.Endpoint, otp_app: :twinkly_maha
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_twinklyMaha_key",
+    key: "_twinkly_maha_key",
     signing_salt: "E/8R6MCV"
   ]
 
@@ -22,7 +22,7 @@ defmodule TwinklyMahaWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :twinklyMaha,
+    from: :twinkly_maha,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
@@ -32,7 +32,7 @@ defmodule TwinklyMahaWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :twinklyMaha
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :twinkly_maha
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,

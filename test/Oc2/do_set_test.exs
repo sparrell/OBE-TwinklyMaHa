@@ -24,9 +24,40 @@ defmodule DoSetTest do
                      }
         |> DoSet.do_cmd
     assert command.error? == true
-    assert command.error_msg == "bad color"
+    assert command.error_msg == "invalid color"
   end
 
+  test "rainbow" do
+    command = %Command{error?: false,
+                      action: "set",
+                      target: "x-sfractal-blinky:led",
+                      target_specifier: "rainbow"
+                     }
+        |> DoSet.do_cmd
+    assert command.error? == false
+    assert command.response.status == 200
+  end
 
+  test "red" do
+    command = %Command{error?: false,
+                      action: "set",
+                      target: "x-sfractal-blinky:led",
+                      target_specifier: "red"
+                     }
+        |> DoSet.do_cmd
+    assert command.error? == false
+    assert command.response.status == 200
+  end
+
+  test "led off" do
+    command = %Command{error?: false,
+                      action: "set",
+                      target: "x-sfractal-blinky:led",
+                      target_specifier: "off"
+                     }
+        |> DoSet.do_cmd
+    assert command.error? == false
+    assert command.response.status == 200
+  end
 
 end

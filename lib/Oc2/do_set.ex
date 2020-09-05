@@ -6,6 +6,11 @@ defmodule DoSet do
 
   require Logger
 
+  @colors ["Violet", "Indigo", "Blue", "Green", "Yellow", "Orange", "Red"]
+
+  @topic "leds"
+
+
   @doc """
   do_cmd executes the action
   matching on action/target
@@ -31,33 +36,16 @@ defmodule DoSet do
   end
 
   defp set_color("rainbow", command) do
-    ToDo.rainbow()
-  end
-  defp set_color("violet", command) do
-    ToDo.violet()
-  end
-  defp set_color("indigo", command) do
-    ToDo.indigo()
-  end
-  defp set_color("blue", command) do
-    ToDo.blue()
-  end
-  defp set_color("green", command) do
-    ToDo.green()
-  end
-  defp set_color("yellow", command) do
-    ToDo.yellow()
-  end
-  defp set_color("orange", command) do
-    ToDo.orange()
-  end
-  defp set_color("red", command) do
-    ToDo.red()
+    Phoenix.PubSub.broadcast(Twinklymaha.PubSub, @topic, "rainbow")
+    %Command{command | response: %{status: 200}}
   end
   defp set_color(color, command) do
-    ## if haven't matched color yet, then bad color
-    Command.return_error("bad color")
+    if color in @colors do
+      Phoenix.PubSub.broadcast(Twinklymaha.PubSub, @topic, color)
+      %Command{command | response: %{status: 200}}
+    else
+      Command.return_error("invalid color")
+    end
   end
-
 
 end

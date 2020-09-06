@@ -3,7 +3,7 @@ defmodule TwinklyMahaWeb.TwinklyLive do
 
   use TwinklyMahaWeb, :live_view
 
-  @colors ["violet", "indigo", "blue", "green", "yellow", "orange", "red"]
+  @colors ["Violet", "Indigo", "Blue", "Green", "Yellow", "Orange", "Red"]
 
   @impl true
   def mount(_params, _session, socket) do

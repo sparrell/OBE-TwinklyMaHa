@@ -62,6 +62,7 @@ defmodule Oc2Mqtt do
 
     {:ok, _} =
       Tortoise.Supervisor.start_child(
+        Oc2Mqtt.Connection.Supervisor,
         client_id: client_id,
         handler: {Oc2Mqtt.Handler, [name: client_id]},
         server: server,

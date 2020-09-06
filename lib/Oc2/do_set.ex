@@ -6,10 +6,9 @@ defmodule DoSet do
 
   require Logger
 
-  @colors ["violet", "indigo", "blue", "green", "yellow", "orange", "red"]
+  @colors ["Violet", "Indigo", "Blue", "Green", "Yellow", "Orange", "Red"]
 
   @topic "leds"
-
 
   @doc """
   do_cmd executes the action
@@ -20,15 +19,16 @@ defmodule DoSet do
     ## something went wrong upstream, pass along
     command
   end
+
   def do_cmd(%Command{action: action}) when action != "set" do
     ## should always be action=set
     Command.return_error("wrong action in command")
   end
-  def do_cmd(%Command{target_specifier: color,
-                      target: "x-sfractal-blinky:led"
-                      } = command) do
+
+  def do_cmd(%Command{target_specifier: color, target: "x-sfractal-blinky:led"} = command) do
     set_color(color, command)
   end
+
   def do_cmd(command) do
     ## should not have gotten here
     Logger.debug("do_cmd #{inspect(command)}")
@@ -39,10 +39,12 @@ defmodule DoSet do
     Phoenix.PubSub.broadcast(TwinklyMaha.PubSub, @topic, "rainbow")
     %Command{command | response: %{status: 200}}
   end
+
   defp set_color("off", command) do
     Phoenix.PubSub.broadcast(TwinklyMaha.PubSub, @topic, "off")
     %Command{command | response: %{status: 200}}
   end
+
   defp set_color(color, command) do
     if color in @colors do
       Phoenix.PubSub.broadcast(TwinklyMaha.PubSub, @topic, color)
@@ -51,5 +53,4 @@ defmodule DoSet do
       Command.return_error("invalid color")
     end
   end
-
 end

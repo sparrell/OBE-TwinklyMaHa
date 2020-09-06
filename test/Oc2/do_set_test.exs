@@ -43,7 +43,7 @@ defmodule DoSetTest do
     command = %Command{error?: false,
                       action: "set",
                       target: "x-sfractal-blinky:led",
-                      target_specifier: "red"
+                      target_specifier: "Red"
                      }
         |> DoSet.do_cmd
     assert command.error_msg == nil

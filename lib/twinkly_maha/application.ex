@@ -29,7 +29,7 @@ defmodule TwinklyMaha.Application do
     opts = [strategy: :one_for_one, name: TwinklyMaha.Supervisor]
     Supervisor.start_link(children, opts)
     # start connection
-    
+    Mqtt.start()
   end
 
   # Tell Phoenix to update the endpoint configuration

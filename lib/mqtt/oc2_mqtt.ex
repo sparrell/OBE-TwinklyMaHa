@@ -64,7 +64,7 @@ defmodule Oc2Mqtt do
       Tortoise.Supervisor.start_child(
         Oc2Mqtt.Connection.Supervisor,
         client_id: client_id,
-        handler: {Oc2Mqtt.Handler, [name: client_id]},
+        handler: {Mqtt.Handler, [name: client_id]},
         server: server,
         user_name: user_name,
         password: password,

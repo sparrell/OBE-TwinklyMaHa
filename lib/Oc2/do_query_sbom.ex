@@ -1,4 +1,4 @@
-defmodule DoQuerySbom do
+defmodule Oc2.DoQuerySbom do
   @moduledoc """
   Documentation for `Query SBOM` contains helper functions for
   blah blah
@@ -19,9 +19,9 @@ defmodule DoQuerySbom do
         |> cdx_chk
     case ok? do
       false ->
-        Command.return_error(answer)
+        Oc2.Command.return_error(answer)
       true ->
-        %Command{command | response: cyclonedx()}
+        %Oc2.Command{command | response: cyclonedx()}
     end
   end
 

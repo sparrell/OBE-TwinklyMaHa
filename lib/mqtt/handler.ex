@@ -1,4 +1,4 @@
-defmodule Oc2Mqtt.Handler do
+defmodule Mqtt.Handler do
   @moduledoc false
 
   require Logger
@@ -54,9 +54,9 @@ defmodule Oc2Mqtt.Handler do
 
     {status, result} =
       msg
-      |> Command.new            #initialize struct
-      |> Command.do_cmd         #execute
-      |> Command.return_result  #reply
+      |> Oc2.Command.new            #initialize struct
+      |> Oc2.Command.do_cmd         #execute
+      |> Mqtt.Command.return_result  #reply
     Logger.debug("handle_msg: status #{inspect(status)}")
     Logger.debug("handle_msg: command #{inspect(result)}")
     Logger.debug("state: #{inspect(state)}")

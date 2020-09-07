@@ -1,4 +1,4 @@
-defmodule DoQueryFeatures do
+defmodule Oc2.DoQueryFeatures do
   @moduledoc """
   Documentation for `Query features` contains helper functions for
   blah blah
@@ -10,7 +10,7 @@ defmodule DoQueryFeatures do
   return_features returns feature query results
      (or error)
   """
-  def return_features(%Command{action: "query",
+  def return_features(%Oc2.Command{action: "query",
                       target: "features",
                       target_specifier: ts
                       } = command) when is_list(ts) do
@@ -18,12 +18,12 @@ defmodule DoQueryFeatures do
   end
   def return_features(command) do
     Logger.debug("return_features #{inspect(command)}")
-    Command.return_error("invalid target specifier")
+    Oc2.Command.return_error("invalid target specifier")
   end
 
   defp get_features(command, []) do
     ## empty feature list, return ok
-    %Command{command | response: %{status: 200}}
+    %Oc2.Command{command | response: %{status: 200}}
   end
   defp get_features(command, features)
           when is_list(features) do
@@ -32,12 +32,12 @@ defmodule DoQueryFeatures do
     case iterate_features(output,features) do
       {:ok, result} ->
         ## respond with answer
-        %Command{command | response: result}
+        %Oc2.Command{command | response: result}
       _ ->
         ## oops occurred on format
         Logger.debug "get_features error"
         error_msg = "invalid features"
-        Command.return_error(error_msg)
+        Oc2.Command.return_error(error_msg)
     end
   end
 

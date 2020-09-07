@@ -1,10 +1,10 @@
 defmodule CommandTest do
   use ExUnit.Case
-  doctest Command
+  doctest Oc2.Command
 
   test "invalid json" do
     command = "{[this is bad"
-      |> Command.new
+      |> Oc2.Command.new
     assert command.error? == true
     assert command.error_msg != nil
   end
@@ -16,7 +16,7 @@ defmodule CommandTest do
       "args": {"response_requested": "complete"}
       }
       """
-      |> Command.new
+      |> Oc2.Command.new
     assert command.error? == false
     assert command.error_msg == nil
     assert command.action == "query"
@@ -35,15 +35,15 @@ defmodule CommandTest do
   end
 
   test "check_cmd_upsteam" do
-    command = %Command{error?: true, error_msg: "error_msg"}
-        |> CheckOc2.check_cmd
+    command = %Oc2.Command{error?: true, error_msg: "error_msg"}
+        |> Oc2.CheckOc2.check_cmd
     assert command.error? == true
     assert command.error_msg == "error_msg"
   end
 
   test "missing action" do
     {:ok, jsontxt} = File.read("test/Bad-command/missing_action.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
     assert command.error? == true
     assert command.error_msg == "no action in command"
   end
@@ -55,49 +55,49 @@ defmodule CommandTest do
       "command_id": "commandIDtest"
       }
       """
-      |> Command.new
+      |> Oc2.Command.new
       assert command.error? == true
       assert command.error_msg == "no target in command"
   end
 
   test "extra top level" do
     {:ok, jsontxt} = File.read("test/Bad-command/xtra_top_level.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
     assert command.error? == true
     assert command.error_msg == "extra top level fields in command"
   end
 
   test "bad action" do
     {:ok, jsontxt} = File.read("test/Bad-command/bad_action.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
     assert command.error? == true
     assert command.error_msg == "bad action"
   end
 
   test "wrong_target_structure" do
     {:ok, jsontxt} = File.read("test/Bad-command/wrong_target_structure.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
     assert command.error? == true
     assert command.error_msg == "bad target"
   end
 
   test "two targets" do
     {:ok, jsontxt} = File.read("test/Bad-command/two_targets.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
     assert command.error? == true
     assert command.error_msg == "bad target"
   end
 
   test "unknown target" do
     {:ok, jsontxt} = File.read("test/Bad-command/unknown_target.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
     assert command.error? == true
     assert command.error_msg == "invalid target \"unknown\""
   end
 
   test "command id" do
     {:ok, jsontxt} = File.read("test/Good-command/profiles.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
 
     assert command.error? == false
     assert command.cmd_id == "randomcommandid"
@@ -105,42 +105,42 @@ defmodule CommandTest do
 
   test "bad cmd id" do
     {:ok, jsontxt} = File.read("test/Bad-command/bad_cmd_id.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
     assert command.error? == true
     assert command.error_msg == "command_id is not string"
   end
 
   test "default response" do
     {:ok, jsontxt} = File.read("test/Good-command/default_response.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
     assert command.error? == false
     assert command.response == "complete"
   end
 
   test "check complete response requested" do
     {:ok, jsontxt} = File.read("test/Good-command/version.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
     assert command.error? == false
     assert command.response == "complete"
   end
 
   test "check none response requested" do
     {:ok, jsontxt} = File.read("test/Good-command/no_response.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
     assert command.error? == false
     assert command.response == "none"
   end
 
   test "check unused response requested" do
     {:ok, jsontxt} = File.read("test/Bad-command/unused_response.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
     assert command.error? == true
     assert command.error_msg == "not handling response_requested = \"ack\" "
   end
 
   test "check two args" do
     {:ok, jsontxt} = File.read("test/Bad-command/two_arg.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
 
     assert command.error? == true
     assert command.error_msg == "not one arg: %{\"response_requested\" => \"complete\", \"start_time\" => \"now\"}"
@@ -148,7 +148,7 @@ defmodule CommandTest do
 
   test "check unknown arg" do
     {:ok, jsontxt} = File.read("test/Bad-command/unknown_arg.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
 
     assert command.error? == true
     assert command.error_msg == "unknown arg %{\"unknown_arg\" => \"complete\"}"
@@ -156,7 +156,7 @@ defmodule CommandTest do
 
   test "version.json" do
     {:ok, jsontxt} = File.read("test/Good-command/version.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
 
     assert command.error? == false
     assert command.error_msg == nil
@@ -172,7 +172,7 @@ defmodule CommandTest do
 
   test "sbom.json" do
     {:ok, jsontxt} = File.read("test/Good-command/sbom1.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
 
     assert command.error? == false
     assert command.error_msg == nil
@@ -188,7 +188,7 @@ defmodule CommandTest do
 
   test "pairs.json" do
     {:ok, jsontxt} = File.read("test/Good-command/pairs.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
 
     assert command.error? == false
     assert command.error_msg == nil
@@ -204,7 +204,7 @@ defmodule CommandTest do
 
   test "profiles.json" do
     {:ok, jsontxt} = File.read("test/Good-command/profiles.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
 
     assert command.error? == false
     assert command.error_msg == nil
@@ -220,7 +220,7 @@ defmodule CommandTest do
 
   test "led-off.json" do
     {:ok, jsontxt} = File.read("test/Good-command/led-off.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
 
     assert command.error? == false
     assert command.error_msg == nil
@@ -236,7 +236,7 @@ defmodule CommandTest do
 
   test "led-on.json" do
     {:ok, jsontxt} = File.read("test/Good-command/led-on.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
 
     assert command.error? == false
     assert command.error_msg == nil
@@ -252,7 +252,7 @@ defmodule CommandTest do
 
   test "led-rainbow.json" do
     {:ok, jsontxt} = File.read("test/Good-command/led-rainbow.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
 
     assert command.error? == false
     assert command.error_msg == nil
@@ -268,7 +268,7 @@ defmodule CommandTest do
 
   test "led-red.json" do
     {:ok, jsontxt} = File.read("test/Good-command/led-red.json")
-    command = jsontxt |> Command.new
+    command = jsontxt |> Oc2.Command.new
 
     assert command.error? == false
     assert command.error_msg == nil

@@ -1,4 +1,4 @@
-defmodule Oc2Mqtt do
+defmodule Mqtt do
   @moduledoc """
   `Oc2Mqtt` is main module for handling openc2 over mqtt
   """

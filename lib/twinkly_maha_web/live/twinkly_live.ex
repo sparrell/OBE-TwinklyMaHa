@@ -4,7 +4,7 @@ defmodule TwinklyMahaWeb.TwinklyLive do
   require Logger
   use TwinklyMahaWeb, :live_view
 
-  @colors ["Violet", "Indigo", "Blue", "Green", "Yellow", "Orange", "Red"]
+  @colors ["violet", "indigo", "blue", "green", "yellow", "orange", "red"]
 
   @topic "leds"
 

@@ -6,7 +6,7 @@ defmodule Oc2.DoSet do
 
   require Logger
 
-  @colors ["Violet", "Indigo", "Blue", "Green", "Yellow", "Orange", "Red"]
+  @colors ["violet", "indigo", "blue", "green", "yellow", "orange", "red"]
 
   @topic "leds"
 

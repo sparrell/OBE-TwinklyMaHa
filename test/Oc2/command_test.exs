@@ -14,7 +14,7 @@ defmodule CommandTest do
   test "valid json1" do
     command =
       """
-      {"action": "query",
+      {"action": "query", 
       "target": {"x-sfractal-blinky:hello_world": "Hello"},
       "args": {"response_requested": "complete"}
       }

@@ -47,21 +47,26 @@ defmodule Mqtt.Handler do
   end
 
   @impl true
-  def handle_message(["sfractal","command"], msg, state) do
+  def handle_message(["sfractal", "command"], msg, state) do
     Logger.debug("id: #{state.name}")
     Logger.debug("topic: sfractal/command")
     Logger.debug("msg: #{inspect(msg)}")
 
     {status, result} =
       msg
-      |> Oc2.Command.new            #initialize struct
-      |> Oc2.Command.do_cmd         #execute
-      |> Mqtt.Command.return_result  #reply
+      # initialize struct
+      |> Oc2.Command.new()
+      # execute
+      |> Oc2.Command.do_cmd()
+      # reply
+      |> Mqtt.Command.return_result()
+
     Logger.debug("handle_msg: status #{inspect(status)}")
     Logger.debug("handle_msg: command #{inspect(result)}")
     Logger.debug("state: #{inspect(state)}")
     {:ok, state}
   end
+
   def handle_message(topic, msg, state) do
     Logger.info("topic != sfractal/command")
     Logger.info("#{state.name}, #{Enum.join(topic, "/")} #{inspect(msg)}")
@@ -73,5 +78,4 @@ defmodule Mqtt.Handler do
     Logger.warn("Client has been terminated with reason: #{inspect(reason)}")
     :ok
   end
-
 end

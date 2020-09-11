@@ -5,7 +5,7 @@ defmodule Oc2.DoOc2 do
 
   require Logger
 
-    @doc """
+  @doc """
   do_cmd executes the action
   matching on action/target
   """
@@ -13,9 +13,11 @@ defmodule Oc2.DoOc2 do
     ## upstream error, pass it on
     command
   end
+
   def do_cmd(%Oc2.Command{action: "set"} = command) do
     Oc2.DoSet.do_cmd(command)
   end
+
   def do_cmd(%Oc2.Command{action: "query"} = command) do
     Oc2.DoQuery.do_cmd(command)
   end
@@ -28,5 +30,4 @@ defmodule Oc2.DoOc2 do
     error_msg = e1 <> e2 <> "" <> e3
     Oc2.Command.return_error(error_msg)
   end
-
 end

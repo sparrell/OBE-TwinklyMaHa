@@ -9,14 +9,9 @@ defmodule Oc2.CheckOc2 do
   """
 
   @actions ["query", "set", "cancel", "allow"]
-  @targets ["sbom",
-            "features",
-            "x-sfractal-blinky:hello_world",
-            "x-sfractal-blinky:led"
-          ]
+  @targets ["sbom", "features", "x-sfractal-blinky:hello_world", "x-sfractal-blinky:led"]
   @top_level ["action", "target", "args", "actuator", "command_id"]
   @response ["none", "complete"]
-
 
   require Logger
 
@@ -26,6 +21,7 @@ defmodule Oc2.CheckOc2 do
   def new({:ok, cmd}) do
     %Oc2.Command{cmd: cmd, error?: false}
   end
+
   def new({_status, error_msg}) do
     %Oc2.Command{error?: true, error_msg: error_msg}
   end
@@ -38,8 +34,10 @@ defmodule Oc2.CheckOc2 do
     ## upstream error, pass it on
     command
   end
+
   def check_cmd(command) do
     Logger.debug("check_oc2:cmd is #{inspect(command.cmd)}")
+
     command
     |> check_top
     |> check_action
@@ -54,22 +52,28 @@ defmodule Oc2.CheckOc2 do
     ## upstream error, pass it on
     command
   end
+
   defp check_top(command) do
     tops = Map.keys(command.cmd)
+
     cond do
       ## is action missing?
       "action" not in tops ->
         Oc2.Command.return_error("no action in command")
+
       ## is target missing?
       "target" not in tops ->
         Oc2.Command.return_error("no target in command")
+
       ## extra top level fields
       0 != length(tops -- @top_level) ->
         Oc2.Command.return_error("extra top level fields in command")
+
       true ->
         ## passed checks
         Logger.debug("check_top: passed")
-        command    #pass command struct to next step
+        # pass command struct to next step
+        command
     end
   end
 
@@ -77,9 +81,11 @@ defmodule Oc2.CheckOc2 do
     ## upstream error, pass it on
     command
   end
+
   defp check_action(command) do
     action = command.cmd["action"]
     Logger.debug("check_action: action #{action}")
+
     if action in @actions do
       # return struct with action updated
       %Oc2.Command{command | action: action}
@@ -93,9 +99,11 @@ defmodule Oc2.CheckOc2 do
     ## upstream error, pass it on
     command
   end
+
   defp get_target(command) do
     whole_target = command.cmd["target"]
     Logger.debug("whole_target: #{inspect(whole_target)}")
+
     if good_target?(whole_target) do
       [target] = Map.keys(whole_target)
       target_specifier = whole_target[target]
@@ -109,6 +117,7 @@ defmodule Oc2.CheckOc2 do
     ## upstream error, pass it on
     command
   end
+
   defp check_target(command) do
     if command.target in @targets do
       # valid so continue
@@ -122,10 +131,12 @@ defmodule Oc2.CheckOc2 do
     ## upstream error, pass it on
     command
   end
+
   defp check_id(command) do
     if Map.has_key?(command.cmd, "command_id") do
       command_id = command.cmd["command_id"]
       Logger.debug("command_id #{inspect(command_id)}")
+
       if is_binary(command_id) do
         %Oc2.Command{command | cmd_id: command_id}
       else
@@ -142,21 +153,28 @@ defmodule Oc2.CheckOc2 do
     ## upstream error, pass it on
     command
   end
+
   defp check_args(command) do
     cond do
       not Map.has_key?(command.cmd, "args") ->
         # no args but need to default response_requested
         %Oc2.Command{command | response: "complete"}
+
       not has_only_one_key?(command.cmd["args"]) ->
         # implementation only supports one arg at moment
         Oc2.Command.return_error("not one arg: #{inspect(command.cmd["args"])}")
+
       not Map.has_key?(command.cmd["args"], "response_requested") ->
         # only handling the response_requested arg for now
         Oc2.Command.return_error("unknown arg #{inspect(command.cmd["args"])}")
+
       command.cmd["args"]["response_requested"] in @response ->
-        %Oc2.Command{command | response: command.cmd["args"]["response_requested"] }
+        %Oc2.Command{command | response: command.cmd["args"]["response_requested"]}
+
       true ->
-        Oc2.Command.return_error("not handling response_requested = #{inspect(command.cmd["args"]["response_requested"])} ")
+        Oc2.Command.return_error(
+          "not handling response_requested = #{inspect(command.cmd["args"]["response_requested"])} "
+        )
     end
   end
 
@@ -171,8 +189,10 @@ defmodule Oc2.CheckOc2 do
     cond do
       not is_map(a_map) ->
         false
+
       not has_only_one_key?(a_map) ->
         false
+
       true ->
         true
     end
@@ -182,5 +202,4 @@ defmodule Oc2.CheckOc2 do
     Logger.info("#{inspect(command)}")
     command
   end
-
 end

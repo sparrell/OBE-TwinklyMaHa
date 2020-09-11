@@ -9,11 +9,10 @@ defmodule Mqtt.Command do
 
   require Logger
 
-
   @doc """
   return result
   """
-  def return_result((%Oc2.Command{error?: true} = command)) do
+  def return_result(%Oc2.Command{error?: true} = command) do
     ## something went wrong upstream, so return "oops"
     e1 = "Error: "
     e2 = inspect(command.error_msg)
@@ -22,10 +21,12 @@ defmodule Mqtt.Command do
     Tortoise.publish("sFractal/response", "oops")
     {:error, error_msg}
   end
-  def return_result((%Oc2.Command{response: nil} = command)) do
+
+  def return_result(%Oc2.Command{response: nil} = command) do
     ## no response
     {:ok, command}
   end
+
   def return_result(command) do
     Logger.debug("return: ok #{inspect(command.response)}")
     response = Jason.encode(command.response)
@@ -33,5 +34,4 @@ defmodule Mqtt.Command do
     Tortoise.publish("sFractal/response", response)
     {:ok, command}
   end
-
 end

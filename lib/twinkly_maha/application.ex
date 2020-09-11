@@ -20,8 +20,7 @@ defmodule TwinklyMaha.Application do
        [
          name: Oc2Mqtt.Connection.Supervisor,
          strategy: :one_for_one
-       ]
-      }
+       ]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

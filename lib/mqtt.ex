@@ -17,6 +17,7 @@ defmodule Mqtt do
         For example:
         export CLIENT_ID=:sfractal2020
         """
+
     Logger.info("client_id is #{client_id}")
 
     mqtt_host =
@@ -27,20 +28,22 @@ defmodule Mqtt do
         export MQTT_HOST="34.86.117.113"
         export MQTT_HOST="mqtt.sfractal.com"
         """
+
     Logger.info("mqtt_host is #{mqtt_host}")
 
     mqtt_port =
-      String.to_integer( System.get_env("MQTT_PORT") ||
-        raise """
-        environment variable MQTT_PORT is missing.
-        Example:
-        export MQTT_PORT=1883
-        """)
+      String.to_integer(
+        System.get_env("MQTT_PORT") ||
+          raise("""
+          environment variable MQTT_PORT is missing.
+          Example:
+          export MQTT_PORT=1883
+          """)
+      )
+
     Logger.info("mqtt_port is #{mqtt_port}")
 
-    server = {Tortoise.Transport.Tcp,
-              host: mqtt_host,
-              port: mqtt_port}
+    server = {Tortoise.Transport.Tcp, host: mqtt_host, port: mqtt_port}
 
     user_name =
       System.get_env("USER_NAME") ||
@@ -49,6 +52,7 @@ defmodule Mqtt do
         Examples:
         export USER_NAME="plug"
         """
+
     Logger.info("user_name is #{user_name}")
 
     password =
@@ -58,6 +62,7 @@ defmodule Mqtt do
         Example:
         export PASSWORD="fest"
         """
+
     Logger.info("password set")
 
     {:ok, _} =
@@ -68,6 +73,7 @@ defmodule Mqtt do
         server: server,
         user_name: user_name,
         password: password,
-        subscriptions: [{"sfractal/command", 0}])
+        subscriptions: [{"sfractal/command", 0}]
+      )
   end
 end

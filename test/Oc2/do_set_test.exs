@@ -55,7 +55,7 @@ defmodule DoSetTest do
         error?: false,
         action: "set",
         target: "x-sfractal-blinky:led",
-        target_specifier: "Red"
+        target_specifier: "red"
       }
       |> Oc2.DoSet.do_cmd()
 

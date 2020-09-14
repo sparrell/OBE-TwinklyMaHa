@@ -9,3 +9,5 @@ twinkly_maha-*.tar
 npm-debug.log
 /assets/node_modules/
 /priv/static/
+/config/*.secret.exs
+.elixir_ls/

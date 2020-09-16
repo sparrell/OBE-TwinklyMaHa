@@ -87,7 +87,7 @@ defmodule Oc2.DoQuerySbom do
     end
   end
 
-  defp cyclonedx() do
+  defp cyclonedx do
     ## return sbom in cyclonedx format
     ## build result starting innermost at binary
     cyclonedx_bin =

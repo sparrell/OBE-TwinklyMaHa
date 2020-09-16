@@ -11,6 +11,7 @@ defmodule TwinklyMaha.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
+      docs: docs(),
       releases: [
         twinkly_maha: [
           include_executables_for: [:unix],
@@ -55,7 +56,8 @@ defmodule TwinklyMaha.MixProject do
       {:phoenix_live_dashboard, "~> 0.2.0"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
-      {:tortoise, "~> 0.9"}
+      {:tortoise, "~> 0.9"},
+      {:ex_doc, "~> 0.22", only: :dev, runtime: false}
     ]
   end
 
@@ -71,6 +73,19 @@ defmodule TwinklyMaha.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+    ]
+  end
+
+  defp docs do
+    [
+      extras: ["README.md"],
+      main: "README",
+      groups_for_modules: [
+        Oc2: [~r/Oc2.*/],
+        MQTT: [~r/Mqtt.*/]
+        # TwinklyMaha
+      ],
+      nest_modules_by_prefix: [TwinklyMaha, TwinklyMahaWeb]
     ]
   end
 end

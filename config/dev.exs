@@ -31,7 +31,8 @@ config :twinkly_maha, TwinklyMahaWeb.Endpoint,
   ]
 
 ## set up openc2 on separate port as it's own endpoint
-  config :twinkly_maha, TwinklyMahaWeb.Endpoint, server: true,
+config :twinkly_maha, TwinklyMahaWeb.Endpoint,
+  server: true,
   http: [port: 8080],
   debug_errors: true,
   code_reloader: true,

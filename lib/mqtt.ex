@@ -1,6 +1,8 @@
 defmodule Mqtt do
   @moduledoc """
-  `Oc2Mqtt` is main module for handling openc2 over mqtt
+  `Mqtt` is main module for handling mqtt
+  mqtt.start initializes the system
+     and starts the Tortoise mqtt client using mqtt.handler
   """
 
   require Logger

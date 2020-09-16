@@ -1,10 +1,14 @@
 defmodule Oc2.Command do
   @moduledoc """
-  Documentation for `Command` contains helper functions for decoding
+  Documentation for `Oc2.Command` contains helper functions for decoding
   and responding to OpenC2 cmds:
   - new - initialize struct and validate command
-  - do_cmd - execute the command
-  - return_result - respond to OC2 producer
+  - do_cmd - execute the command (using helpers in peer modules)
+  - return_error - helper routine for when errors are encountered
+
+  Oc2.Command is called from transport modules (eg mqtt, http, ...)
+  and is common across transports.
+  Oc2.Command results are returned to transport modules to return reply messages
   """
 
   @enforce_keys [:error?]

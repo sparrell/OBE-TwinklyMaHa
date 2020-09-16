@@ -1,6 +1,8 @@
 defmodule Oc2.DoOc2 do
   @moduledoc """
-  Documentation for `DoOc2` contains ...
+  `Oc2.DoOc2` contains routines to execute the OpenC2 command,
+  calling helper routines for the different OpenC2  commands
+  (e.g. do_query for the OpenC2 'query' command )
   """
 
   require Logger

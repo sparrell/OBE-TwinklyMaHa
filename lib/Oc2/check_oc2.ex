@@ -1,11 +1,9 @@
 defmodule Oc2.CheckOc2 do
   @moduledoc """
-  Documentation for `CheckOc2` contains helper functions for decoding
-  and responding to OpenC2 cmds:
+  `Oc2.CheckOc2` contains helper functions for decoding
+  and responding to OpenC2 commands:
   - new - initialize struct
   - chk_cmd - validate command
-  - do_cmd - execute the command
-  - return_result - respond to OC2 producer
   """
 
   @actions ["query", "set", "cancel", "allow"]
@@ -28,7 +26,7 @@ defmodule Oc2.CheckOc2 do
 
   @doc """
   check_cmd checks the decoded json (now elixir terms) for
-  openc2 compliance
+  compliance with the openc2 specification
   """
   def check_cmd(%Oc2.Command{error?: true} = command) do
     ## upstream error, pass it on

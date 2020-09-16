@@ -1,5 +1,10 @@
 defmodule Mqtt.Handler do
-  @moduledoc false
+  @moduledoc """
+  Mqtt.Handler is a behaviour of Tortoise for handling mqtt
+  It allows for connections, subscriptons, and handles messages.
+  The mqtt-specific code is here; and this module calls oc2 for
+  OpenC2 parsing and execution
+  """
 
   require Logger
 

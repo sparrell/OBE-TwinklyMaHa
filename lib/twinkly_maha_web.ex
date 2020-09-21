@@ -30,7 +30,7 @@ defmodule TwinklyMahaWeb do
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/twinklyMaha_web/templates",
+        root: "lib/twinkly_maha_web/templates",
         namespace: TwinklyMahaWeb
 
       # Import convenience functions from controllers

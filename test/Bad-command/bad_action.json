@@ -1,0 +1,5 @@
+{"action": "Query",
+ "target": {"features":  ["profiles"]},
+ "args": {"response_requested": "complete"},
+ "command_id": 1
+}

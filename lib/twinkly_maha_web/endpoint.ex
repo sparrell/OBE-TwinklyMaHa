@@ -6,7 +6,7 @@ defmodule TwinklyMahaWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_twinklyMaha_key",
+    key: "_twinkly_maha_key",
     signing_salt: "E/8R6MCV"
   ]
 

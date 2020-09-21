@@ -30,7 +30,14 @@ config :twinkly_maha, TwinklyMahaWeb.Endpoint,
     ]
   ]
 
-config :twinkly_maha, TwinklyMahaWeb.Endpoint, server: true
+## set up openc2 on separate port as it's own endpoint
+config :twinkly_maha, TwinklyMahaWeb.Endpoint,
+  server: true,
+  http: [port: 8080],
+  debug_errors: true,
+  code_reloader: true,
+  check_origin: false
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
@@ -61,8 +68,8 @@ config :twinkly_maha, TwinklyMahaWeb.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/twinklyMaha_web/(live|views)/.*(ex)$",
-      ~r"lib/twinklyMaha_web/templates/.*(eex)$"
+      ~r"lib/twinkly_maha_web/(live|views)/.*(ex)$",
+      ~r"lib/twinkly_maha_web/templates/.*(eex)$"
     ]
   ]
 

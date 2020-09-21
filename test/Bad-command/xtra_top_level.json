@@ -1,0 +1,7 @@
+{"action": "query",
+ "target": {"features":  ["profiles"]},
+ "args": {"response_requested": "complete"},
+ "command_id": "whateverid",
+ "actuator": "whatever",
+ "extra": "this should not be here"
+}

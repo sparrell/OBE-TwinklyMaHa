@@ -14,15 +14,21 @@ defmodule TwinklyMaha.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: TwinklyMaha.PubSub},
       # Start the Endpoint (http/https)
-      TwinklyMahaWeb.Endpoint
-      # Start a worker by calling: TwinklyMaha.Worker.start_link(arg)
-      # {TwinklyMaha.Worker, arg}
+      TwinklyMahaWeb.Endpoint,
+      # start mqtt connection
+      {Tortoise.Supervisor,
+       [
+         name: Oc2Mqtt.Connection.Supervisor,
+         strategy: :one_for_one
+       ]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: TwinklyMaha.Supervisor]
     Supervisor.start_link(children, opts)
+    # start connection
+    Mqtt.start()
   end
 
   # Tell Phoenix to update the endpoint configuration

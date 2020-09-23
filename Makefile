@@ -71,3 +71,17 @@ release: ## Build a release of the application with MIX_ENV=prod
 	mkdir -p priv/static
 	MIX_ENV=prod mix phx.digest
 	MIX_ENV=prod mix release
+
+.PHONY: docker-image
+docker-image:
+	docker build . -t maha:$(version) --no-cache
+
+.PHONY: push-image-gcp
+push-image-gcp: ## push image to gcp
+	docker build . -t maha:$(version) --no-cache
+	docker tag maha:$(version) gcr.io/twinklymaha/maha:$(version)
+	docker push gcr.io/twinklymaha/maha:$(version)
+
+.PHONY: push-and-serve-gcp
+push-and-serve-gcp: push-image-gcp
+	gcloud compute instances create-with-container $(instance-name) --container-image=gcr.io/twinklymaha/maha:$(version) --machine-type=e2-micro --subnet=default --network-tier=PREMIUM --metadata=google-logging-enabled=true --tags=http-server,https-server --labels=project=twinklymaha

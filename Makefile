@@ -83,7 +83,7 @@ push-image-gcp: ## push image to gcp
 	docker rmi gcr.io/twinklymaha/maha:$(APP_VERSION);\
 	fi
 	docker build . -t gcr.io/twinklymaha/maha:$(APP_VERSION) --no-cache
-	gcloud container images delete gcr.io/twinklymaha/maha:$(APP_VERSION) --force-delete-tags --quiet
+	gcloud container images delete gcr.io/twinklymaha/maha:$(APP_VERSION) --force-delete-tags --quiet || echo "no image to delete on the remote"
 	docker push gcr.io/twinklymaha/maha:$(APP_VERSION)
 
 .PHONY: push-and-serve-gcp

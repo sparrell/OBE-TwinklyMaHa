@@ -2,8 +2,8 @@
 	# -------------
 
 APP_NAME ?= `grep 'app:' mix.exs | sed -e 's/\[//g' -e 's/ //g' -e 's/app://' -e 's/[:,]//g'`
-APP_VERSION ?= `grep 'version:' mix.exs | cut -d '"' -f2`
-DOCKER_IMAGE_TAG ?= latest
+APP_VERSION := $(shell grep 'version:' mix.exs | cut -d '"' -f2)
+DOCKER_IMAGE_TAG ?= $(APP_VERSION)
 GIT_REVISION ?= `git rev-parse HEAD`
 
 # Introspection targets
@@ -71,3 +71,25 @@ release: ## Build a release of the application with MIX_ENV=prod
 	mkdir -p priv/static
 	MIX_ENV=prod mix phx.digest
 	MIX_ENV=prod mix release
+
+.PHONY: docker-image
+docker-image:
+	docker build . -t maha:$(APP_VERSION) --no-cache
+
+.PHONY: push-image-gcp
+push-image-gcp: ## push image to gcp
+	@if [[ "$(docker images -q gcr.io/twinklymaha/maha:$(APP_VERSION)> /dev/null)" != "" ]]; then \
+  @echo "Removing previous image $(APP_VERSION) from your machine..."; \
+	docker rmi gcr.io/twinklymaha/maha:$(APP_VERSION);\
+	fi
+	docker build . -t gcr.io/twinklymaha/maha:$(APP_VERSION) --no-cache
+	gcloud container images delete gcr.io/twinklymaha/maha:$(APP_VERSION) --force-delete-tags --quiet || echo "no image to delete on the remote"
+	docker push gcr.io/twinklymaha/maha:$(APP_VERSION)
+
+.PHONY: push-and-serve-gcp
+push-and-serve-gcp: push-image-gcp
+	gcloud compute instances create-with-container $(instance-name) --container-image=gcr.io/twinklymaha/maha:$(DOCKER_IMAGE_TAG) --machine-type=e2-micro --subnet=default --network-tier=PREMIUM --metadata=google-logging-enabled=true --tags=http-server,https-server --labels=project=twinklymaha
+
+.PHONY: deploy-existing
+deploy-existing:
+	gcloud compute instances create-with-container $(instance-name) --container-image=gcr.io/twinklymaha/maha:$(DOCKER_IMAGE_TAG) --machine-type=e2-micro --subnet=default --network-tier=PREMIUM --metadata=google-logging-enabled=true --tags=http-server,https-server --labels=project=twinklymaha

@@ -43,7 +43,42 @@ test                   Run the test suite
 ```
 
 ## Deployment to GCP
-We are using gitlab to deploy to GCP by creating a tarball, connecting to the instance and copying the tarball into the server, extracting it and running it. This is automatically done when merged into the main branch.
+The deployment is done using docker images with the help of make tasks. We can create a docker image, push it to container registry on gcp and then launch
+an instance using this docker image
 
-### Challenges
-Currently experiencing auto deploy challenge as outlined in [this issue]( https://github.com/sparrell/TwinklyMaHa/issues/19 )
+The docker image is automatically tagged with the application version from your mix file
+
+### Deployment from local machine
+**Before you begin:**
+- Make sure you have write access to the docker registry
+- You will need the necessary permissions to create an instance
+- Docker should be installed in your computer and running
+- GCloud should be well set up, authenticated and initialised to use docker
+- access to production secrets in the `prod.secrets.exs` file (look at `config/prod.sample.exs` to see an example)
+
+
+#### creating an image for use in your laptop
+If you want to create a docker image for use in your laptop then you can use the command
+```shell
+make docker-image
+```
+
+#### Creating an image and pushing to GCP
+You can optionally create an image on your laptop and push it up to GCP container registry using the following command
+```shell
+make push-image-gcp
+```
+This will create the image and tag it with the current application version then push the created image to GCP
+
+#### creating an image and lauching an instance on GCP
+You can also run a server on GCP using the docker image by running the following command
+```shell
+make push-and-serve-gcp instance-name=<give-the-instance-a-unique-name>
+```
+
+If you had created an image before and would like to create a running server using the image run:
+```shell
+make deploy-existing instance-name=<give-the-instance-a-unique-name>
+```
+
+The instance name you provide above should be unique and should not be existing on GCP already otherwise you will get an error

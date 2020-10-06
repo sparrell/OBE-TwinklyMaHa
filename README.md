@@ -78,17 +78,31 @@ make push-and-serve-gcp instance-name=<give-the-instance-a-unique-name>
 
 If you had created an image before and would like to create a running server using the image run:
 ```shell
-make deploy-existing instance-name=<give-the-instance-a-unique-name>
+make deploy-existing-image instance-name=<give-the-instance-a-unique-name>
 ```
 
 The instance name you provide above should be unique and should not be existing on GCP already otherwise you will get an error
 
+#### Custom environment variables
+You can set the following custom environment variables when building the image or launching a vm instance
+
+- CLIENT_ID
+- MQTT_HOST
+- MQTT_PORT
+- USER_NAME
+- PASSWORD
+
+When running the make commands above you can add any of the variables above that you want to customise for example:
+
+```shell
+make deploy-existing-image instance-name=<a-unique-name> CLIENT_ID=<your_new_id> USER_NAME=<prefered_name>
+```
 ### Accessing twinklymaha
 The above procedures create an instance of twinklymaha
 on GCP with the name you gave it.
 Using console.cloud.google.compute,
 go to your virtual machine instances,
-and look up the external ip (a.b.c.d5) of the instance you just created.
+and look up the external ip (a.b.c.d5) of the instance you just created (if you used one of the make commands then the ip address will be listed upon successful startup of the instance).
 Note the phoenix webserver is running on port 4000
 and the home page is twinkly.
 Go to http://a.b.c.d:4000/twinkly

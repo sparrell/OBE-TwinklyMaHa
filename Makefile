@@ -86,7 +86,7 @@ docker-image:
 	--build-arg USER_NAME=$(USER_NAME) \
 	--build-arg PASSWORD=$(PASSWORD) \
 
-.PHONY: push-image-gcp push-and-serve deploy-existing
+.PHONY: push-image-gcp push-and-serve deploy-existing-image
 push-image-gcp: ## push image to gcp
 	@if [[ "$(docker images -q gcr.io/twinklymaha/maha:$(APP_VERSION)> /dev/null)" != "" ]]; then \
   @echo "Removing previous image $(APP_VERSION) from your machine..."; \
@@ -102,9 +102,9 @@ push-image-gcp: ## push image to gcp
 	gcloud container images delete gcr.io/twinklymaha/maha:$(APP_VERSION) --force-delete-tags  || echo "no image to delete on the remote"
 	docker push gcr.io/twinklymaha/maha:$(APP_VERSION)
 
-push-and-serve-gcp: push-image-gcp deploy-existing
+push-and-serve-gcp: push-image-gcp deploy-existing-image
 
-deploy-existing:
+deploy-existing-image:
 	gcloud compute instances create-with-container $(instance-name) \
 		--container-image=gcr.io/twinklymaha/maha:$(DOCKER_IMAGE_TAG) \
 		--machine-type=e2-micro \

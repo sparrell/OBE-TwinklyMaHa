@@ -82,3 +82,14 @@ make deploy-existing instance-name=<give-the-instance-a-unique-name>
 ```
 
 The instance name you provide above should be unique and should not be existing on GCP already otherwise you will get an error
+
+### Accessing twinklymaha
+The above procedures create an instance of twinklymaha
+on GCP with the name you gave it.
+Using console.cloud.google.compute,
+go to your virtual machine instances,
+and look up the external ip (a.b.c.d5) of the instance you just created.
+Note the phoenix webserver is running on port 4000
+and the home page is twinkly.
+Go to http://a.b.c.d:4000/twinkly
+Note it is http not https

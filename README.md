@@ -83,6 +83,20 @@ make deploy-existing-image instance-name=<give-the-instance-a-unique-name>
 
 The instance name you provide above should be unique and should not be existing on GCP already otherwise you will get an error
 
+#### updating a running instance
+If you want to update an already running instance with a different version of the application, you need
+to ensure that the image is created and pushed to gcr.io using `make push-image-gcp` after which you can update an instance to use the image.
+
+This is done by specifying the tag to the image you want to use (`image-tag`) and the running instance you want to update (`instance-name`)
+
+```shell
+make update-instance instance-name=<existing-instance-name> image-tag=<existing-tag-on-gcr>
+```
+
+An example would be:
+```shell
+make update-instance instance-name=testinstance image-tag=0.5.0
+```
 #### Custom environment variables
 You can set the following custom environment variables when building the image or launching a vm instance
 

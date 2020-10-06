@@ -114,3 +114,7 @@ deploy-existing-image:
 		--tags=http-server,https-server \
 		--labels=project=twinklymaha \
 		--container-env=CLIENT_ID=$(CLIENT_ID),MQTT_HOST=$(MQTT_HOST),MQTT_PORT=$(MQTT_PORT),USER_NAME=$(USER_NAME),PASSWORD=$(PASSWORD)
+
+.PHONY: update-instance
+update-instance:
+	gcloud compute instances update-container $(instance-name) --container-image gcr.io/twinklymaha/maha:$(image-tag)

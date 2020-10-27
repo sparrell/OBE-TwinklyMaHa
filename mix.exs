@@ -40,6 +40,7 @@ defmodule TwinklyMaha.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 2.0"},
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:ecto, ">= 3.4.4 and < 3.4.5"},
       {:ecto_sql, ">= 3.4.4 and < 3.4.5"},
@@ -58,7 +59,8 @@ defmodule TwinklyMaha.MixProject do
       {:telemetry_poller, "~> 0.4"},
       {:tortoise, "~> 0.9"},
       {:ex_doc, "~> 0.22", only: :dev, runtime: false},
-      {:sbom, "~> 0.6.0", only: :dev, runtime: false}
+      {:sbom, "~> 0.6.0", only: :dev, runtime: false},
+      {:phx_gen_auth, "~> 0.4.0", only: [:dev], runtime: false}
     ]
   end
 

@@ -16,6 +16,11 @@
           <ul>
             <li>TwinklyMaha </li>
           </ul>
+
+        <li><a href="http://34.123.55.37:8080/projects/f66c3983-35ab-4741-81b5-acab2a936ced" target="_blank"> SBOM dashboard </a> </li>
+            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
+            <% end %>
         </nav>
         <a href="/" class="logo">
           <img src="<%= Routes.static_path(@conn, "/images/Plugfest.png") %>" alt="Plugfest logo"/>

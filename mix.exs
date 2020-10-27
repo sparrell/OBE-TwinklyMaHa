@@ -57,7 +57,8 @@ defmodule TwinklyMaha.MixProject do
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:tortoise, "~> 0.9"},
-      {:ex_doc, "~> 0.22", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.22", only: :dev, runtime: false},
+      {:sbom, "~> 0.6.0", only: :dev, runtime: false}
     ]
   end
 

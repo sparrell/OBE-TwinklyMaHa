@@ -79,7 +79,7 @@ release: ## Build a release of the application with MIX_ENV=prod
 
 .PHONY: docker-image
 docker-image:
-	docker build . -t maha:$(APP_VERSION) \
+	docker build . -t maha:$(APP_VERSION) --no-cache \
 	--build-arg CLIENT_ID=$(CLIENT_ID) \
 	--build-arg MQTT_HOST=$(MQTT_HOST) \
 	--build-arg MQTT_PORT=$(MQTT_PORT) \

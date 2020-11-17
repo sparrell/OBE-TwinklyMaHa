@@ -1,5 +1,5 @@
 # heavily borrowed from https://elixirforum.com/t/cannot-find-libtinfo-so-6-when-launching-elixir-app/24101/11?u=sigu
-FROM elixir:1.10.4 AS app_builder
+FROM elixir:1.11.2 AS app_builder
 
 ARG env=prod
 
@@ -37,7 +37,7 @@ RUN mix phx.digest && mix release
 FROM debian:buster-slim AS app
 
 ARG CLIENT_ID=:sfractal2020
-ARG MQTT_HOST=35.184.192.117
+ARG MQTT_HOST=34.86.117.113
 ARG MQTT_PORT=1883
 ARG USER_NAME=plug
 ARG PASSWORD=fest

@@ -21,7 +21,7 @@ defmodule Mqtt.Handler do
 
   @impl true
   def connection(:up, state) do
-    Logger.info("MQTT Connection has been established")
+    Logger.debug("Connection has been established")
     {:ok, state}
   end
 
@@ -32,7 +32,7 @@ defmodule Mqtt.Handler do
 
   @impl true
   def subscription(:up, topic, state) do
-    Logger.info("Subscribed to #{topic}")
+    Logger.debug("Subscribed to #{topic}")
     {:ok, state}
   end
 
@@ -47,15 +47,15 @@ defmodule Mqtt.Handler do
   end
 
   def subscription(:down, topic, state) do
-    Logger.info("Unsubscribed from #{topic}")
+    Logger.debug("Unsubscribed from #{topic}")
     {:ok, state}
   end
 
   @impl true
   def handle_message(["sfractal", "command"], msg, state) do
-    Logger.info("id: #{state.name}")
-    Logger.info("topic: sfractal/command")
-    Logger.info("msg: #{inspect(msg)}")
+    Logger.debug("id: #{state.name}")
+    Logger.debug("topic: sfractal/command")
+    Logger.debug("msg: #{inspect(msg)}")
 
     {status, result} =
       msg
@@ -66,9 +66,9 @@ defmodule Mqtt.Handler do
       # reply
       |> Mqtt.Command.return_result()
 
-    Logger.info("handle_msg: status #{inspect(status)}")
-    Logger.info("handle_msg: command #{inspect(result)}")
-    Logger.info("state: #{inspect(state)}")
+    Logger.debug("handle_msg: status #{inspect(status)}")
+    Logger.debug("handle_msg: command #{inspect(result)}")
+    Logger.debug("state: #{inspect(state)}")
     {:ok, state}
   end
 

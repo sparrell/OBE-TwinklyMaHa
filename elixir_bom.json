@@ -1,0 +1,394 @@
+{
+  "bomFormat": "CycloneDX",
+  "components": [
+    {
+      "description": "An Elixir wrapper for gen_statem.",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "gen_state_machine",
+      "purl": "pkg:hex/gen_state_machine@2.1.0",
+      "type": "library",
+      "version": "2.1.0"
+    },
+    {
+      "description": "Connection behaviour for connection processes",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "connection",
+      "purl": "pkg:hex/connection@1.0.4",
+      "type": "library",
+      "version": "1.0.4"
+    },
+    {
+      "description": "Internationalization and localization through gettext",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "gettext",
+      "purl": "pkg:hex/gettext@0.18.2",
+      "type": "library",
+      "version": "0.18.2"
+    },
+    {
+      "description": "Socket acceptor pool for TCP protocols.",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "name": "ranch",
+      "purl": "pkg:hex/ranch@1.7.1",
+      "type": "library",
+      "version": "1.7.1"
+    },
+    {
+      "description": "Dynamic dispatching library for metrics and instrumentations",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "telemetry",
+      "purl": "pkg:hex/telemetry@0.4.2",
+      "type": "library",
+      "version": "0.4.2"
+    },
+    {
+      "description": "Provides a common interface for defining metrics based on Telemetry events.",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "telemetry_metrics",
+      "purl": "pkg:hex/telemetry_metrics@0.6.0",
+      "type": "library",
+      "version": "0.6.0"
+    },
+    {
+      "description": "Periodically collect measurements and dispatch them as Telemetry events.",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "telemetry_poller",
+      "purl": "pkg:hex/telemetry_poller@0.5.1",
+      "type": "library",
+      "version": "0.5.1"
+    },
+    {
+      "description": "Arbitrary precision decimal arithmetic.",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "decimal",
+      "purl": "pkg:hex/decimal@2.0.0",
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "description": "A blazing fast JSON parser and generator in pure Elixir.",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "jason",
+      "purl": "pkg:hex/jason@1.2.2",
+      "type": "library",
+      "version": "1.2.2"
+    },
+    {
+      "description": "A MQTT client for Elixir.",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "tortoise",
+      "purl": "pkg:hex/tortoise@0.9.5",
+      "type": "library",
+      "version": "0.9.5"
+    },
+    {
+      "description": "Database connection behaviour for database transactions and connection pooling",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "db_connection",
+      "purl": "pkg:hex/db_connection@2.3.0",
+      "type": "library",
+      "version": "2.3.0"
+    },
+    {
+      "description": "A toolkit for data mapping and language integrated query for Elixir",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "ecto",
+      "purl": "pkg:hex/ecto@3.4.4",
+      "type": "library",
+      "version": "3.4.4"
+    },
+    {
+      "description": "Distributed PubSub and Presence platform",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "phoenix_pubsub",
+      "purl": "pkg:hex/phoenix_pubsub@2.0.0",
+      "type": "library",
+      "version": "2.0.0"
+    },
+    {
+      "description": "Support library for manipulating Web protocols.",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "name": "cowlib",
+      "purl": "pkg:hex/cowlib@2.9.1",
+      "type": "library",
+      "version": "2.9.1"
+    },
+    {
+      "description": "Small, fast, modular HTTP server.",
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ],
+      "name": "cowboy",
+      "purl": "pkg:hex/cowboy@2.8.0",
+      "type": "library",
+      "version": "2.8.0"
+    },
+    {
+      "description": "Telemetry instrumentation for Cowboy",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "cowboy_telemetry",
+      "purl": "pkg:hex/cowboy_telemetry@0.3.1",
+      "type": "library",
+      "version": "0.3.1"
+    },
+    {
+      "description": "A MIME type module for Elixir",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "mime",
+      "purl": "pkg:hex/mime@1.4.0",
+      "type": "library",
+      "version": "1.4.0"
+    },
+    {
+      "description": "PostgreSQL driver for Elixir",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "postgrex",
+      "purl": "pkg:hex/postgrex@0.15.7",
+      "type": "library",
+      "version": "0.15.7"
+    },
+    {
+      "description": "SQL-based adapters for Ecto and database migrations",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "ecto_sql",
+      "purl": "pkg:hex/ecto_sql@3.4.4",
+      "type": "library",
+      "version": "3.4.4"
+    },
+    {
+      "description": "Crypto-related functionality for the web",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "plug_crypto",
+      "purl": "pkg:hex/plug_crypto@1.2.0",
+      "type": "library",
+      "version": "1.2.0"
+    },
+    {
+      "description": "A specification and conveniences for composable modules between web applications",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "plug",
+      "purl": "pkg:hex/plug@1.11.0",
+      "type": "library",
+      "version": "1.11.0"
+    },
+    {
+      "description": "A Plug adapter for Cowboy",
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ],
+      "name": "plug_cowboy",
+      "purl": "pkg:hex/plug_cowboy@2.4.1",
+      "type": "library",
+      "version": "2.4.1"
+    },
+    {
+      "description": "Phoenix view functions for working with HTML templates",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "phoenix_html",
+      "purl": "pkg:hex/phoenix_html@2.14.2",
+      "type": "library",
+      "version": "2.14.2"
+    },
+    {
+      "description": "Productive. Reliable. Fast. A productive web framework that\ndoes not compromise speed or maintainability.",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "phoenix",
+      "purl": "pkg:hex/phoenix@1.5.6",
+      "type": "library",
+      "version": "1.5.6"
+    },
+    {
+      "description": "Rich, real-time user experiences with server-rendered HTML",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "phoenix_live_view",
+      "purl": "pkg:hex/phoenix_live_view@0.14.8",
+      "type": "library",
+      "version": "0.14.8"
+    },
+    {
+      "description": "Real-time performance dashboard for Phoenix",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "phoenix_live_dashboard",
+      "purl": "pkg:hex/phoenix_live_dashboard@0.3.6",
+      "type": "library",
+      "version": "0.3.6"
+    },
+    {
+      "description": "Integration between Phoenix & Ecto",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ],
+      "name": "phoenix_ecto",
+      "purl": "pkg:hex/phoenix_ecto@4.2.1",
+      "type": "library",
+      "version": "4.2.1"
+    }
+  ],
+  "metadata": {
+    "timestamp": "2020-12-09T18:44:09.579239Z",
+    "tools": [
+      {
+        "name": "SBoM Mix task for Elixir"
+      }
+    ]
+  },
+  "serialNumber": "4e9382be-d18b-49bf-862b-05e6f8c67fd3",
+  "specVersion": "1.2",
+  "version": "1"
+}

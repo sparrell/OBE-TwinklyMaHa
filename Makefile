@@ -118,3 +118,9 @@ deploy-existing-image:
 .PHONY: update-instance
 update-instance:
 	gcloud compute instances update-container $(instance-name) --container-image gcr.io/twinklymaha/maha:$(image-tag)
+
+.PHONY: sbom
+sbom: ## Generates sbom for both npm and hex packages
+	mix deps.get && mix sbom.cyclonedx -o elixir_bom.xml
+	cd assets/  && npm install && npm install -g @cyclonedx/bom && cyclonedx-bom -o ../bom.xml -a ../elixir_bom.xml && cd ..
+	./cyclonedx-cli convert --input-file bom.xml --output-file bom.json

@@ -2,10 +2,12 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/assets"
+    target-branch: "update_dependabot"
     schedule:
-      interval: "daily"
+      interval: "monthly"
 
   - package-ecosystem: "elixir"
     directory: "/"
+    target-branch: "update_dependabot"
     schedule:
-      interval: "daily"
+      interval: "monthly"

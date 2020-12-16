@@ -110,7 +110,7 @@ To generate an sbom file, use the make task `make sbom` to generate a `bom.json`
 You can set the following custom environment variables when building the image or launching a vm instance
 
 - CLIENT_ID
-- MQTT_HOST2
+- MQTT_HOST
 - MQTT_PORT
 - USER_NAME
 - PASSWORD

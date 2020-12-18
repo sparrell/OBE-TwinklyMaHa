@@ -1,7 +1,7 @@
 on:
   push:
-    branches:
-      - automate/release_generation
+    tags:
+      - 'v*'
 
 name: Upload Release Asset
 

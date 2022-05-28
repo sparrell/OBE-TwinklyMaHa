@@ -34,7 +34,7 @@ COPY priv ./priv
 # Final build step: digest static assets and generate the release
 RUN mix phx.digest && mix release
 
-FROM debian:buster-slim AS app
+FROM debian:10.12-slim AS app
 
 ARG CLIENT_ID=:sfractal2020
 ARG MQTT_HOST=34.86.117.113
